@@ -45,8 +45,6 @@ export async function POST(request: Request) {
         existingUserByEmail.verifyCode= verifyCode;
         existingUserByEmail.verifyCodeExpires= new Date(Date.now()+3600000);
         await existingUserByEmail.save()
-
-
       }
     } else {
       const hashedPassword = await bcrypt.hash(password, 15);
@@ -64,7 +62,6 @@ export async function POST(request: Request) {
       });
       await newUser.save();
     }
-
     // send the verification email
     const emailResponse = await sendVerificationEmail(
       email,
