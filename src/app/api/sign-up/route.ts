@@ -39,11 +39,11 @@ export async function POST(request: Request) {
           },
           { status: 400 }
         );
-      }else{
-        const hashedPassword = await bcrypt.hash(password,15)
-        existingUserByEmail.password= hashedPassword;
-        existingUserByEmail.verifyCode= verifyCode;
-        existingUserByEmail.verifyCodeExpires= new Date(Date.now()+3600000);
+      } else {
+        const hashedPassword = await bcrypt.hash(password, 15)
+        existingUserByEmail.password = hashedPassword;
+        existingUserByEmail.verifyCode = verifyCode;
+        existingUserByEmail.verifyCodeExpires = new Date(Date.now() + 3600000);
         await existingUserByEmail.save()
       }
     } else {
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         success: true,
-        message: "UUser registered successfully , please verify your email",
+        message: "User registered successfully , please verify your email",
       },
       { status: 201 }
     );
